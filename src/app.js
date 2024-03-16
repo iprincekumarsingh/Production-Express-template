@@ -1,13 +1,14 @@
-const express = require("express");
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+// import appRoutes from "./routes/index.js";
 const app = express();
-const cors = require("cors");
-const morgan = require("morgan");
 
 app.use(
-    cors({
-        origin: "*",
-        credentials: true,
-    })
+  cors({
+    origin: "*",
+    credentials: true,
+  })
 );
 app.use(morgan("tiny"));
 app.use(express.json());
@@ -15,13 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send("Something broke!");
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
 });
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
-
-app.use("/", require("./routes/heatlhcheck.route"));
-module.exports = app;
+export { app };

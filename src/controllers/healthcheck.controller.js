@@ -1,5 +1,5 @@
-const asyncHandler = require("../utils/asyncHandler");
-const ApiResponse = require("../utils/ApiResponse");
+import asyncHandler from "../utils/asyncHandler.js";
+import ApiResponse from "../utils/ApiResponse.js";
 
 const healthcheck = asyncHandler(async (req, res, next) => {
   try {
@@ -10,4 +10,4 @@ const healthcheck = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = healthcheck;
+export default healthcheck;

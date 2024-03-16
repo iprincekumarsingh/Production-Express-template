@@ -1,7 +1,12 @@
-const router = require("express").Router();
-const healthcheck = require("../controllers/healthcheck.controller");
 
+import asyncHandler from '../utils/asyncHandler.js'
+import {ApiResponse} from '../utils/ApiResponse.js'
 
-router.route("/healthCheck").get(healthcheck);
+const healthcheck = asyncHandler(async (req, res) => {
+  console.log("Client ip: ", req.clientIp);
+  return res
+    .status(200)
+    .json(new ApiResponse(200, "OK", "Health check passed"));
+});
 
-module.exports = router;
+export { healthcheck };
